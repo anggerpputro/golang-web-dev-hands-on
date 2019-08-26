@@ -30,6 +30,8 @@ func (h handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 	// tpl.ExecuteTemplate(w, "index.gohtml", data)
 
+	// w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
 	fmt.Fprintln(w, "Hello from handler!")
 }
 
