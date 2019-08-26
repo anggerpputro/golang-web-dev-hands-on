@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>004: Net HTTP Package</title>
+    </head>
+
+    <body>
+        {{ if . }}
+        <main>
+            {{ if .Method }}
+                <p><strong>Method:</strong> <em>{{ .Method }}</em></p>
+            {{ end }}
+
+            {{ if .URL }}
+                <p><strong>URL:</strong></p>
+                <ul>
+                    <li>Scheme - <em>{{ .URL.Scheme }}</em></li>
+                    <li>Opaque - <em>{{ .URL.Opaque }}</em></li>
+                    <li>Host - <em>{{ .URL.Host }}</em></li>
+                    <li>Path - <em>{{ .URL.Path }}</em></li>
+                    <li>RawPath - <em>{{ .URL.RawPath }}</em></li>
+                    <li>ForceQuery - <em>{{ .URL.ForceQuery }}</em></li>
+                    <li>RawQuery - <em>{{ .URL.RawQuery }}</em></li>
+                    <li>Fragment - <em>{{ .URL.Fragment }}</em></li>
+                </ul>
+            {{ end }}
+
+            {{ if false }}
+                <p><strong>Headers:</strong></p>
+                {{ range $key, $value := .Header }}
+                    <p><strong>{{ $key }}</strong></p>
+                    <ul>
+                        {{ range $value }}
+                            <li><em>{{ . }}</em></li>
+                        {{ end }}
+                    </ul>
+                {{ end }}
+            {{ end }}
+
+            {{ if .ContentLength }}
+                <p><strong>Content-Length:</strong> <em>{{ .ContentLength }}</em></p>
+            {{ end }}
+
+            {{ if .Submissions }}
+                <p><strong>variable names</strong> (identifiers) and <em>values</em>:</p>
+                {{ range $key, $value := .Submissions }}
+                    <p><strong>{{ $key }}</strong></p>
+                    <ul>
+                        {{ range $value }}
+                            <li><em>{{ . }}</em></li>
+                        {{ end }}
+                    </ul>
+                {{ end }}
+            {{ end }}
+        </main>
+        {{ end }}
+
+        <form action="/?fname=James" method="POST">
+            <input type="text" name="fname" placeholder="First Name" autocomplete="off" />
+            <input type="submit" name="submit-btn" value="Submit!" />
+        </form>
+
+    </body>
+</html>
